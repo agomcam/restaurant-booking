@@ -1,0 +1,5 @@
+<app-header></app-header>
+<div *ngFor="let reserva of bookingList" >
+   <app-booking-resume [bookingInput]="reserva"></app-booking-resume>
+</div>
+<app-footer></app-footer>

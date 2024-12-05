@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form [formGroup]="formBooking" (ngSubmit)="onSubmit()">
+                <input type="text" hidden class="form-control" formControlName="id" id="id">
+                <div class="form-group">
+                    <label for="client">Nombre del cliente:</label>
+                    <input [ngClass]="{
+                        'is-invalid':this.formBooking.get('nombre')?.invalid && formBooking.get('nombre')?.touched,
+                        'is-valid':this.formBooking.get('nombre')?.valid
+                        }" formControlName="nombre" type="text" class="form-control" id="client">
+                    <div class="invalid-feedback">
+                        <small
+                            *ngIf="formBooking.get('nombre')?.errors?.['required'] && formBooking.get('nombre')?.touched">Debe
+                            indicar el nombre del cliente.</small> <br>
+                        <small
+                            *ngIf="formBooking.get('nombre')?.errors?.['required'] && formBooking.get('nombre')?.touched">El
+                            nombre del cliente no puede estar vacío</small> <br>
+                        <small
+                            *ngIf="formBooking.get('nombre')?.errors?.['maxlength'] && formBooking.get('nombre')?.touched">El
+                            nombre del cliente no puede tener más de 50 caracteres</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Número de Teléfono:</label>
+                    <input [ngClass]="{
+                        'is-invalid':this.formBooking.get('telefono')?.invalid && formBooking.get('telefono')?.touched,
+                        'is-valid':this.formBooking.get('telefono')?.valid
+                        }" formControlName="telefono" type="text" class="form-control " id="phone">
+                    <div class="invalid-feedback">
+                        <small
+                            *ngIf="formBooking.get('telefono')?.errors?.['required'] && formBooking.get('telefono')?.touched">Debe
+                            indicar un número de teléfono.</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input [ngClass]="{
+                        'is-invalid':this.formBooking.get('email')?.invalid && formBooking.get('email')?.touched,
+                        'is-valid':this.formBooking.get('email')?.valid
+                        }" formControlName="email" type="email" class="form-control" id="email">
+                    <div class="invalid-feedback">
+                        <small *ngIf="formBooking.get('email')?.errors?.['required'] && formBooking.get('email')?.touched">Debe indicar un email.</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="persons">Número de comensales:</label>
+                    <input [ngClass]="{
+                        'is-invalid':this.formBooking.get('numComensales')?.invalid && formBooking.get('numComensales')?.touched,
+                        'is-valid':this.formBooking.get('numComensales')?.valid
+                        }" formControlName="numComensales" type="number" class="form-control" id="persons">
+                    <div class="invalid-feedback">
+                        <small *ngIf="formBooking.get('numComensales')?.errors?.['invalidnumcommenor0'] && formBooking.get('numComensales')?.touched">El número de comensales debe ser mayor que 0.</small> <br>
+                        <small  *ngIf="formBooking.get('numComensales')?.errors?.['invalidnumcommayor50'] && formBooking.get('numComensales')?.touched">El número de comensales debe ser menor que 50.</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Nota:</label>
+                    <input  [ngClass]="{
+                        'is-invalid':this.formBooking.get('nota')?.invalid && formBooking.get('nota')?.touched,
+                        'is-valid':this.formBooking.get('nota')?.valid
+                        }" formControlName="nota" type="textarea" row="1" class="form-control" id="notes">
+                    <div class="invalid-feedback">
+                        <small *ngIf="formBooking.get('nota')?.errors?.['maxlength'] && formBooking.get('numComensales')?.touched">La longitud de la nota no puede superar los 240 caracteres.</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="date">Fecha reserva:</label>
+                    <input [ngClass]="{
+                        'is-invalid':this.formBooking.get('fecha')?.invalid && formBooking.get('fecha')?.touched,
+                        'is-valid':this.formBooking.get('fecha')?.valid
+                        }" formControlName="fecha" type="datetime-local" row="1" class="form-control" id="date">
+                    <div class="invalid-feedback">
+                        <small *ngIf="formBooking.get('fecha')?.errors?.['required'] && formBooking.get('fecha')?.touched">Debe indicar una fecha para la reserva.</small>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+</div>
